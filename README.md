@@ -9,4 +9,7 @@ This project uses a multi-agent AI crew to evaluate startup ideas. Here’s how 
 You provide a startup idea (or let the system generate one). The process is fully automated and results are saved to output.txt.
 
 *Demo:*
-https://github.com/user-attachments/assets/a8e0e599-37b7-494a-8633-578629fa7cf0
+
+
+https://github.com/user-attachments/assets/4c215ac5-6684-4bea-ac10-f66ae9a505db
+
