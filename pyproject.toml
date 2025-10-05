@@ -1,0 +1,27 @@
+[project]
+name = "masumi_proj"
+version = "0.1.0"
+description = "Masumi_proj using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai[tools]>=0.201.1,<1.0.0"
+]
+
+[project.scripts]
+masumi_proj = "masumi_proj.main:run"
+run_crew = "masumi_proj.main:run"
+train = "masumi_proj.main:train"
+replay = "masumi_proj.main:replay"
+test = "masumi_proj.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
+
+[tool.hatch.build.targets.wheel]
+# include top-level modules under src (adjust patterns as needed)
+include = ["src/*.py", "src/**/*.py"]
