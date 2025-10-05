@@ -7,3 +7,5 @@ This project uses a multi-agent AI crew to evaluate startup ideas. Here’s how 
 4. *Pitch Deck Generation*: The AI consolidates all findings into a professional pitch deck and a one-page summary.
 
 You provide a startup idea (or let the system generate one). The process is fully automated and results are saved to output.txt.
+Demo:
+[https://github.com/dsid271/smart_startup_evaluator_masumi_track/blob/main/demo.mp4]([url](https://github.com/dsid271/smart_startup_evaluator_masumi_track/blob/main/demo.mp4))
