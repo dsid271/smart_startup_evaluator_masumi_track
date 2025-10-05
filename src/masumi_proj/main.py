@@ -90,4 +90,7 @@ def run():
             f.write(str(final))
 
 if __name__ == "__main__":
-    run()
+    import sys
+    if len(sys.argv) > 1 and sys.argv[1] == "api":
+        import uvicorn
+        uvicorn.run("agentic_service:app", host="0.0.0.0", port=8000, reload=True)

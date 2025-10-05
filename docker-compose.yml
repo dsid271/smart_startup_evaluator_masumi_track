@@ -14,15 +14,15 @@ services:
         condition: service_healthy
     command: >
       sh -c "apt-get update && apt-get install -y curl && npm run prisma:migrate && npm run prisma:seed && npm start"
-
     networks:
       - masumi-network-registry
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/api/v1/health"]
-      interval: 10s
-      timeout: 5s
+      interval: 30s
+      timeout: 10s
       retries: 5
+      start_period: 60s
 
   payment-service:
     image: ghcr.io/masumi-network/masumi-payment-service:0.22.0
@@ -45,9 +45,10 @@ services:
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3001/api/v1/health"]
-      interval: 10s
-      timeout: 5s
+      interval: 30s
+      timeout: 10s
       retries: 5
+      start_period: 60s
 
   postgres-registry:
     image: postgres:15
@@ -55,15 +56,18 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
     ports:
       - "5432:5432"
     volumes:
       - postgres_data_registry:/var/lib/postgresql/data
+    shm_size: 128mb
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 10s
       timeout: 5s
-      retries: 5
+      retries: 10
+      start_period: 30s
     networks:
       - masumi-network-registry
     restart: unless-stopped
@@ -74,15 +78,18 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
     ports:
       - "5433:5432"
     volumes:
       - postgres_data_payment:/var/lib/postgresql/data
+    shm_size: 128mb
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 10s
       timeout: 5s
-      retries: 5
+      retries: 10
+      start_period: 30s
     networks:
       - masumi-network-payment
     restart: unless-stopped
