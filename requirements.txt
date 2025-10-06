@@ -1,0 +1,11 @@
+crewai
+langchain-openai
+fastapi
+pydantic 
+python-dotenv
+tiktoken
+crewai[tools]
+masumi
+python-multipart
+httpx
+uvicorn
